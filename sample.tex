@@ -1,0 +1,77 @@
+
+
+\documentclass[colorlinks=true,pdfstartview=FitV,linkcolor=blue,
+            citecolor=red,urlcolor=magenta]{ligodoc}
+
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{longtable}
+\usepackage{rotating}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{fancyhdr}
+\usepackage{subfigure}
+\usepackage{hyperref}
+\ligodccnumber{T}{18}{XXXXX}{}{v1}% \ligodistribution{AIC, ISC}
+
+
+\title{LIGO SURF 2018 - Project Proposal\\ \vspace{0.5cm} \large{Investigation of Optimal Non-linear Temperature Control}}
+
+
+\author{Shruti Jose Maliakal}
+\begin{document}
+
+\section{Introduction}
+A more complete picture of astrophysical phenomena, such as the pre-merger dynamics of neutron star or black hole binaries, can only be obtained if the sensitivity of detection at lower frequencies can be improved. At lower frequencies, once the seismic noise has been filtered out, thermal noise remains the limiting source of noise in the strain measurements required for gravitational wave detection. A careful budgeting of thermal noise in a system of two fixed-spacer Fabry-Perot cavities has shown that the dominant source of thermal fluctuations was found to be the Brownian noise of the mirror coatings \cite{noisebudget}.
+
+One way to mitigate this effect is by the use of smart controls that can outperform simple PID control and maintain a more stable temperature. In linear control, the actuation signal applied is proportional to the signal obtained. But it is seen that the strength of the actuation signal required often varies with the current state of the system. For example, the PID tuning for a given system would change if the set-point for stabilisation is changed. In the concerned system, PID control does not work adequately and hence, there is a need to develop controls that take into account all changes. 
+
+An optimal control loop would require the knowledge of the whole state space, where the actuation is not a linear and separable function of the system parameters. This is necessary because the system might under- or over-react and take too long or to converge to the set-point or cause instability. In a paper by Tolat and Widrow \cite{broombalance}, an inverted pendulum is stabilised using adaptive techniques in which the system was trained to reach the optimal parameter values. A similar approach will be taken with regard to temperature control using the adaptive technique of neural networks. Neural networks would be used to map the n-dimensional parameter space to the fitted parameter values for optimal outcome. 
+
+A detailed physical model of the system would have to be worked out from which the optimal set of parameters must be found. In the system of the Fabry-Perot resonator pair, where temperature stabilisation is required, the relevant parameters would include the heat capacity, the radiative cooling rates, propagation rates of heat, and rates of change of temperature, all which change with temperature.
+
+\section{Objectives}
+\begin{itemize}
+\item Develop a model of the thermal dynamics of the experimental system of the Fabry-Perot resonator pair. 
+\item Simulate and train the system using neural networks and reinforced learning to construct a 'controller map'
+\item Use techniques such as Kalman filtering, implemented using neural networks, to further mitigate thermal fluctuations. 
+\item Possibly, experimentally test the extent of success in the implementation of the model.
+\item Construct a look-up table or vector field-like map of how the system should respond at various temperatures, and rate of change of temperature.
+\end{itemize}
+
+\section{Approach}
+
+\subsection{A model for thermal dynamics}
+A model for thermal dynamics would involve a numerical simulation of the differential equations involving thermal transport (radiation and conduction) and heat capacities of the elements of the system. More specifically, a non-linear time-domain model must be made and simulated using python.
+
+\subsection{Translating the adaptive technique in \cite{broombalance} to temperature control}
+Further subtleties seem to arise in the case of thermal control, as compared to stabilising an inverted pendulum, where the simulation of the physical model would involve many parameters each possessing large uncertainties in possible optimal values. These must be taken into account while undertaking training of neural networks to obtain the controller map.
+
+\section{Project Schedule}
+
+
+
+ 
+
+
+\begin{thebibliography}{9}
+      
+     \bibitem{discussion}
+     This proposal is based on email and Skype discussions with my mentor for the project, Dr Andrew Wade (postdoc, Adhikari research group), and Prof Rana Adhikari (Experimental Gravitational Physics, LIGO Lab Caltech).
+     
+	\bibitem{noisebudget}
+	  Chalermsongsak et. al.,
+	  \emph{Broadband measurement of coating thermal noise in rigid Fabry-Perot cavities}.
+	doi: 10.1088/0026-1394/52/1/17.    
+      
+      \bibitem{broombalance}
+	Viral V. Tolat, Bernard Widrow
+	\emph{An adaptive 'broom balancer' with visual input}. 
+	\url{http://www-isl.stanford.edu/~widrow/papers/c1988anadaptive.pdf}      
+      
+ 
+\end{thebibliography} %Must end the environment
+
+
+
+\end{document} 
